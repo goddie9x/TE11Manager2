@@ -1,16 +1,14 @@
-using TE11Manager.Controller;
+using System.Windows.Forms;
+using TE11Manager.View;
 
 namespace TE11Manager
 {
     internal static class Program
     {
-        public static readonly string MainApi = "https://te11api.herokuapp.com/";
+        public static FormLogin login = new FormLogin();
         static void Main()
         {
-            /*LoginController loginController = new LoginController();
-            loginController.Start();*/
-            MainController mainController = new MainController();
-            mainController.Start();
+            Application.Run(login);
         }
     }
 }

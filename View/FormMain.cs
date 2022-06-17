@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using TE11Manager.Controller;
 
 namespace TE11Manager.View
 {
@@ -10,8 +11,7 @@ namespace TE11Manager.View
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
-        public static FormMain instance;
-
+        private MainController controller = new MainController();
         public FormMain()
         {
             InitializeComponent();
@@ -20,12 +20,19 @@ namespace TE11Manager.View
             panelMenu.Controls.Add(leftBorderBtn);
             //Form
             this.Text = string.Empty;
-            this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            instance = this;
+            OpenChildForm(new FormDashboard());
+            InitUserInfo();
         } 
-
+        private void InitUserInfo()
+        {
+            if (FormLogin.user != null)
+            {
+                UserFullNameLabel.Text = (FormLogin.user.fullName!=""&& FormLogin.user.fullName !=null) ? FormLogin.user.fullName: "No name";
+                AvatarImage.ImageLocation = FormLogin.user.image;
+            }
+        }
         private struct RGBColors
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
@@ -80,8 +87,9 @@ namespace TE11Manager.View
             currentChildForm = childForm;
             //End
             childForm.TopLevel = false;
+            childForm.AutoScroll = true;
             childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
+            //childForm.Dock = DockStyle.Fill; f* this shit
             panelDesktop.Controls.Add(childForm);
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
@@ -124,6 +132,23 @@ namespace TE11Manager.View
             ActivateButton(sender, RGBColors.color1);
             OpenChildForm(new FormUsers());
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            controller.Logout();
+            this.Hide();
+            Program.login.Show();
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

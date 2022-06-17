@@ -4,12 +4,13 @@ namespace TE11Manager.Util
 {
     internal static class HttpRequestCommon
     {
-        public static string GetDataJSON(string url)
+        private static string MainApi = "https://te11api.herokuapp.com/";
+        public static string GetDataJSON(string path)
         {
             HttpRequest http = new HttpRequest();
             try
             {
-                return http.Get(url).ToString();
+                return http.Get(MainApi+ path).ToString();
             }
             catch (Exception e)
             {
@@ -21,7 +22,7 @@ namespace TE11Manager.Util
             HttpRequest http = new HttpRequest();
             try
             {
-                string result = http.Post(Program.MainApi+path, data, contentType).ToString();
+                string result = http.Post(MainApi+path, data, contentType).ToString();
                 return result;
             }
             catch(Exception e)
@@ -34,7 +35,7 @@ namespace TE11Manager.Util
             HttpRequest http = new HttpRequest();
             try
             {
-                return http.Post(Program.MainApi + path, data, contentType).ToString();
+                return http.Post(MainApi + path, data, contentType).ToString();
             }
             catch (HttpException e)
             {
@@ -44,7 +45,7 @@ namespace TE11Manager.Util
         public static HttpResponse PostDataJSONWithFullResult(string path, string data = "", string contentType = "application/json")
         {
             HttpRequest http = new HttpRequest();
-            return http.Post(Program.MainApi + path, data, contentType);
+            return http.Post(MainApi + path, data, contentType);
         }
     }
 }

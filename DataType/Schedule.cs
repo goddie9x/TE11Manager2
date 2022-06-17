@@ -13,8 +13,8 @@
         private int type;
         private int dayOfWeek;
         private int partOfDay;
-        private int dayStart;
-        private int dayEnd;
+        private string dayStart;
+        private string dayEnd;
         private bool deleted;
         public string Id { get { return _id; } set { _id = value; } }
         public string Name { get { return name; } set { name = value; } }
@@ -25,8 +25,8 @@
         public int Type { get { return type; } set { type = value; } }
         public int DayOfWeek { get { return dayOfWeek; } set { dayOfWeek = value; } }
         public int PartOfDay { get { return partOfDay; } set { partOfDay = value; } }
-        public int DayStart { get { return dayStart; } set { dayStart = value; } }
-        public int DayEnd { get { return dayEnd; } set { dayEnd = value; } }
+        public string DayStart { get { return dayStart; } set { dayStart = value; } }
+        public string DayEnd { get { return dayEnd; } set { dayEnd = value; } }
         public bool Deleted { get { return deleted; } set { deleted = value; } }
         #endregion
         #region constructor
@@ -41,8 +41,8 @@
             type = 0;
             dayOfWeek = 0;
             partOfDay = 0;
-            dayStart = 0;
-            dayEnd = 0;
+            dayStart = "";
+            dayEnd = "";
             deleted = false;
         }
         public Schedule(string _id = "",
@@ -54,8 +54,8 @@
             int type = 0,
             int dayOfWeek = 0,
             int partOfDay = 0,
-            int dayStart = 0,
-            int dayEnd = 0,
+            string dayStart = "",
+            string dayEnd = "",
             bool deleted = false)
         {
             this._id = _id;

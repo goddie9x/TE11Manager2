@@ -4,12 +4,9 @@
     {
 #nullable enable
         #region attributes
-        protected string account;
-        private string email;
-        protected string password;
-        public string _Account { get { return account; } set { account = value; } }
-        public string Email { get { return email; } set { email = value; } }
-        public string Password { get { return password; } set { password = value; } }
+        public string account;
+        public string email;
+        private string password;
         #endregion
         #region constructor
         public Account()

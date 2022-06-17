@@ -12,5 +12,28 @@ namespace TE11Manager.Util
             });
             thread.Start();
         }
+        public static void HideFormInstanceIfExit(ref Form formNeedToHide)
+        {
+            if (formNeedToHide != null)
+            {
+                formNeedToHide.Hide();
+            }
+        }
+        public static void ShowOtherFormAndHideCurrentForm(Form formNeedToShow, Form formNeedToHide, bool isClose = false) {
+            if (formNeedToShow != null)
+            {
+                formNeedToShow.Show();
+                formNeedToShow.Activate();
+                formNeedToShow.Focus();
+                if (isClose)
+                {
+                    formNeedToHide.Close();
+                }
+                else
+                {
+                    formNeedToHide.Hide();
+                }
+            }
+        }
     }
 }

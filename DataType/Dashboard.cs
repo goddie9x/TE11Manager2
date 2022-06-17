@@ -10,7 +10,6 @@
         private int amountPost;
         private int amountPostPerMonth;
         private int amountSchedule;
-
         public int AmountUser
         {
             get

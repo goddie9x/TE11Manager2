@@ -2,7 +2,7 @@
 
 namespace TE11Manager.View
 {
-    partial class FormSchedules
+    partial class FormManager
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace TE11Manager.View
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
+            this.FormTitle = new System.Windows.Forms.Label();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.SchedluleGrid = new System.Windows.Forms.DataGridView();
             this.ColSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -42,7 +42,6 @@ namespace TE11Manager.View
             this.ColPartOfDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDayStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDayEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PaginationPanel = new System.Windows.Forms.Panel();
             this.PaginationNavPanel = new System.Windows.Forms.Panel();
             this.PageInputField = new System.Windows.Forms.TextBox();
@@ -59,17 +58,17 @@ namespace TE11Manager.View
             this.PaginationNavPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // FormTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(42, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Schedules";
+            this.FormTitle.AutoSize = true;
+            this.FormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormTitle.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.FormTitle.Location = new System.Drawing.Point(42, 18);
+            this.FormTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FormTitle.Name = "FormTitle";
+            this.FormTitle.Size = new System.Drawing.Size(157, 32);
+            this.FormTitle.TabIndex = 0;
+            this.FormTitle.Text = "Schedules";
             // 
             // DeleteBtn
             // 
@@ -94,8 +93,7 @@ namespace TE11Manager.View
             this.ColDayOfWeek,
             this.ColPartOfDay,
             this.ColDayStart,
-            this.ColDayEnd,
-            this.Id});
+            this.ColDayEnd});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -159,12 +157,6 @@ namespace TE11Manager.View
             this.ColDayEnd.HeaderText = "Day end";
             this.ColDayEnd.Name = "ColDayEnd";
             this.ColDayEnd.Width = 115;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
             // 
             // PaginationPanel
             // 
@@ -283,7 +275,7 @@ namespace TE11Manager.View
             this.SwicthStoreBtn.UseVisualStyleBackColor = false;
             this.SwicthStoreBtn.Click += new System.EventHandler(this.SwicthStoreBtn_Click);
             // 
-            // FormSchedules
+            // FormManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -293,13 +285,13 @@ namespace TE11Manager.View
             this.Controls.Add(this.PaginationPanel);
             this.Controls.Add(this.SchedluleGrid);
             this.Controls.Add(this.DeleteBtn);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.FormTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "FormSchedules";
-            this.Text = " ";
-            this.Load += new System.EventHandler(this.FormSchedules_Load);
-            this.Shown += new System.EventHandler(this.FormSchedules_Shown);
+            this.Name = "FormManager";
+            this.Text = "FormManager";
+            this.Load += new System.EventHandler(this.FormManager_Load);
+            this.Shown += new System.EventHandler(this.FormManager_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.SchedluleGrid)).EndInit();
             this.PaginationPanel.ResumeLayout(false);
             this.PaginationPanel.PerformLayout();
@@ -312,9 +304,8 @@ namespace TE11Manager.View
 
         #endregion
 
-        private Label label1;
+        private Label FormTitle;
         private Button DeleteBtn;
-        private DataGridViewTextBoxColumn ColId;
         private DataGridViewTextBoxColumn ColName;
         private DataGridViewTextBoxColumn ColRoom;
         private DataGridViewTextBoxColumn ColTime;
@@ -335,6 +326,5 @@ namespace TE11Manager.View
         private Button PrevPageBtn;
         private Button SwicthStoreBtn;
         private Panel PaginationNavPanel;
-        private DataGridViewTextBoxColumn Id;
     }
 }

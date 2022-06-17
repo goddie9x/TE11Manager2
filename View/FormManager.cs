@@ -4,7 +4,7 @@ using TE11Manager.DataType;
 
 namespace TE11Manager.View
 {
-    public partial class FormSchedules : Form
+    public partial class FormManager : Form
     {
         private MainController controller = new MainController();
         private Schedules scheduleInfo;
@@ -62,13 +62,13 @@ namespace TE11Manager.View
                     currentPage = 1;
                     isNeedToGetSchedule = false;
                 }
-                if (currentPage > TotalPage)
+                if (currentPage > TotalPage+1)
                 {
                     MessageBox.Show("We are on the last page");
-                    currentPage = TotalPage;
+                    currentPage = TotalPage+1;
                     isNeedToGetSchedule = false;
                 }
-                IsFirstPage = currentPage == 1;
+                IsFirstPage = currentPage == 0;
                 IsEndPage = currentPage == totalPage;
                 PageInputField.Text = ""+currentPage;
                 if (isNeedToGetSchedule)
@@ -106,7 +106,7 @@ namespace TE11Manager.View
                 TotalPage = TotalPage % perPage==0? tempTotal: tempTotal + 1;
             }
         }
-        public FormSchedules()
+        public FormManager()
         {
             InitializeComponent();
             perPage = PerPages[0];
@@ -128,7 +128,7 @@ namespace TE11Manager.View
                 MessageBox.Show("Something went wrong or you have no permission");
             }
         }
-        private void FormSchedules_Shown(object sender, System.EventArgs e)
+        private void FormManager_Shown(object sender, System.EventArgs e)
         {
             CurrentPage = 1;
         }
@@ -165,10 +165,10 @@ namespace TE11Manager.View
                     MessageBox.Show("You are enter out of total page");
                     currentPage = 1;
                 }
-                if (currentPage > TotalPage)
+                if (currentPage > TotalPage + 1)
                 {
                     MessageBox.Show("You are enter out of total page");
-                    currentPage = TotalPage;
+                    currentPage = TotalPage + 1;
                 }
                 PageInputField.Text = "" + currentPage;
             }
@@ -196,7 +196,7 @@ namespace TE11Manager.View
 
         private void MoveToEndPageBtn_Click(object sender, System.EventArgs e)
         {
-            CurrentPage = TotalPage;
+            CurrentPage = TotalPage - 1;
         }
 
         private void SwicthStoreBtn_Click(object sender, System.EventArgs e)
@@ -225,7 +225,7 @@ namespace TE11Manager.View
             }
         }
 
-        private void FormSchedules_Load(object sender, System.EventArgs e)
+        private void FormManager_Load(object sender, System.EventArgs e)
         {
             CurrentPage = 1;
         }

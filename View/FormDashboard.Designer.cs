@@ -34,7 +34,7 @@
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartLoggedAnalystic = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.TotalLogin = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.totalUserLoggedLabel = new System.Windows.Forms.Label();
@@ -45,9 +45,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.AmountSubjetsLabel = new System.Windows.Forms.Label();
+            this.AmountSchedulesLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartLoggedAnalystic)).BeginInit();
             this.TotalLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -81,31 +81,31 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Dashboard";
             // 
-            // chart1
+            // chartLoggedAnalystic
             // 
-            this.chart1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
+            this.chartLoggedAnalystic.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.chartLoggedAnalystic.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chartLoggedAnalystic.ChartAreas.Add(chartArea1);
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(15, 145);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2);
-            this.chart1.Name = "chart1";
+            this.chartLoggedAnalystic.Legends.Add(legend1);
+            this.chartLoggedAnalystic.Location = new System.Drawing.Point(26, 145);
+            this.chartLoggedAnalystic.Margin = new System.Windows.Forms.Padding(2);
+            this.chartLoggedAnalystic.Name = "chartLoggedAnalystic";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(816, 216);
-            this.chart1.TabIndex = 2;
-            this.chart1.Text = "chart1";
+            this.chartLoggedAnalystic.Series.Add(series1);
+            this.chartLoggedAnalystic.Size = new System.Drawing.Size(770, 216);
+            this.chartLoggedAnalystic.TabIndex = 2;
+            this.chartLoggedAnalystic.Text = "chart1";
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             title1.Name = "Title1";
             title1.Text = "Total number of people logged in";
-            this.chart1.Titles.Add(title1);
+            this.chartLoggedAnalystic.Titles.Add(title1);
             // 
             // TotalLogin
             // 
@@ -113,7 +113,7 @@
             this.TotalLogin.Controls.Add(this.pictureBox1);
             this.TotalLogin.Controls.Add(this.totalUserLoggedLabel);
             this.TotalLogin.Controls.Add(this.label2);
-            this.TotalLogin.Location = new System.Drawing.Point(601, 42);
+            this.TotalLogin.Location = new System.Drawing.Point(566, 42);
             this.TotalLogin.Margin = new System.Windows.Forms.Padding(2);
             this.TotalLogin.Name = "TotalLogin";
             this.TotalLogin.Size = new System.Drawing.Size(230, 76);
@@ -121,7 +121,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Student_manager.Properties.Resources.icons8_uchiha_eyes_70;
+            this.pictureBox1.Image = global::TE11Manager.Properties.Resources.icons8_uchiha_eyes_70;
             this.pictureBox1.Location = new System.Drawing.Point(2, 2);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
@@ -160,7 +160,7 @@
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.AmountPostsLabel);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(15, 42);
+            this.panel2.Location = new System.Drawing.Point(26, 44);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(230, 76);
@@ -168,7 +168,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Student_manager.Properties.Resources.icons8_writting_66;
+            this.pictureBox3.Image = global::TE11Manager.Properties.Resources.icons8_writting_66;
             this.pictureBox3.Location = new System.Drawing.Point(2, 2);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
@@ -205,9 +205,9 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Coral;
             this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Controls.Add(this.AmountSubjetsLabel);
+            this.panel3.Controls.Add(this.AmountSchedulesLabel);
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Location = new System.Drawing.Point(306, 42);
+            this.panel3.Location = new System.Drawing.Point(297, 44);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(230, 76);
@@ -215,7 +215,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Student_manager.Properties.Resources.icons8_physics_book_70;
+            this.pictureBox2.Image = global::TE11Manager.Properties.Resources.icons8_physics_book_70;
             this.pictureBox2.Location = new System.Drawing.Point(0, 2);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
@@ -224,17 +224,17 @@
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
-            // AmountSubjetsLabel
+            // AmountSchedulesLabel
             // 
-            this.AmountSubjetsLabel.AutoSize = true;
-            this.AmountSubjetsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AmountSubjetsLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.AmountSubjetsLabel.Location = new System.Drawing.Point(74, 30);
-            this.AmountSubjetsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.AmountSubjetsLabel.Name = "AmountSubjetsLabel";
-            this.AmountSubjetsLabel.Size = new System.Drawing.Size(53, 17);
-            this.AmountSubjetsLabel.TabIndex = 1;
-            this.AmountSubjetsLabel.Text = "10000";
+            this.AmountSchedulesLabel.AutoSize = true;
+            this.AmountSchedulesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AmountSchedulesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.AmountSchedulesLabel.Location = new System.Drawing.Point(74, 30);
+            this.AmountSchedulesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AmountSchedulesLabel.Name = "AmountSchedulesLabel";
+            this.AmountSchedulesLabel.Size = new System.Drawing.Size(53, 17);
+            this.AmountSchedulesLabel.TabIndex = 1;
+            this.AmountSchedulesLabel.Text = "10000";
             // 
             // label6
             // 
@@ -244,26 +244,27 @@
             this.label6.Location = new System.Drawing.Point(74, 9);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 17);
+            this.label6.Size = new System.Drawing.Size(132, 17);
             this.label6.TabIndex = 0;
-            this.label6.Text = "Amount subjects";
+            this.label6.Text = "Amount schedule";
             // 
             // FormDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(862, 383);
+            this.ClientSize = new System.Drawing.Size(820, 480);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.TotalLogin);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chartLoggedAnalystic);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDashboard";
             this.Text = "FormDashboard";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.Load += new System.EventHandler(this.FormDashboard_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chartLoggedAnalystic)).EndInit();
             this.TotalLogin.ResumeLayout(false);
             this.TotalLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -282,7 +283,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartLoggedAnalystic;
         private System.Windows.Forms.Panel TotalLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label totalUserLoggedLabel;
@@ -291,7 +292,7 @@
         private System.Windows.Forms.Label AmountPostsLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label AmountSubjetsLabel;
+        private System.Windows.Forms.Label AmountSchedulesLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
