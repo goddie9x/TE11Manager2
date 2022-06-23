@@ -4,7 +4,7 @@
     {
     #nullable enable
         #region attributes
-        private string _id;
+        public string _id;
         private string name;
         private string room;
         private string time;
@@ -16,7 +16,6 @@
         private string dayStart;
         private string dayEnd;
         private bool deleted;
-        public string Id { get { return _id; } set { _id = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string Room { get { return room; } set { room = value; } }
         public string Time { get { return time; } set { time = value; } }

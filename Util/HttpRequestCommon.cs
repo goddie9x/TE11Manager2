@@ -5,7 +5,7 @@ namespace TE11Manager.Util
     internal static class HttpRequestCommon
     {
         private static string MainApi = "https://te11api.herokuapp.com/";
-        public static string GetDataJSON(string path)
+        public static string GetData(string path)
         {
             HttpRequest http = new HttpRequest();
             try

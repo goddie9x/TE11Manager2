@@ -84,7 +84,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(176, 20);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
@@ -93,7 +93,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(176, 20);
-            this.txtPassword.TabIndex = 5;
+            this.txtPassword.TabIndex = 3;
             // 
             // label3
             // 
@@ -110,13 +110,14 @@
             // btnRegister
             // 
             this.btnRegister.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegister.FlatAppearance.BorderSize = 0;
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRegister.Location = new System.Drawing.Point(211, 341);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(87, 40);
-            this.btnRegister.TabIndex = 7;
+            this.btnRegister.TabIndex = 5;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -127,7 +128,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(176, 20);
-            this.txtEmail.TabIndex = 9;
+            this.txtEmail.TabIndex = 1;
             // 
             // label4
             // 
@@ -148,7 +149,7 @@
             this.txtRePassword.Name = "txtRePassword";
             this.txtRePassword.PasswordChar = '*';
             this.txtRePassword.Size = new System.Drawing.Size(176, 20);
-            this.txtRePassword.TabIndex = 11;
+            this.txtRePassword.TabIndex = 4;
             // 
             // label5
             // 
@@ -195,6 +196,7 @@
             this.Name = "FormRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormRegister_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

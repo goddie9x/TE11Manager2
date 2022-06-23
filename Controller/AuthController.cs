@@ -81,12 +81,30 @@ namespace TE11Manager.Controller
         {
             Account currentAccount = new Account(userName, password, email);
 
-            string token = HttpRequestCommon.PostDataJSON("user/register", currentAccount.ToJSONForLogin());
-            if (token != null)
+            string result = HttpRequestCommon.PostDataJSONIfFalseReturnStatusCode("user/register", currentAccount.ToJSONForRegister());
+            switch (result)
             {
-               return LocalStorage.SaveJSONData(token);
+                //all that shit status is made by the creater of xNet :v example: status 402 = PaymentRequired
+                case "Unauthorized":
+                    {
+                        MessageBox.Show("Account existed");
+                        return false;
+                    }
+                case "PaymentRequired":
+                    {
+                        MessageBox.Show("Email existed");
+                        return false;
+                    }
+                case "InternalServerError":
+                    {
+                        MessageBox.Show("Something went wrong, please try again latter");
+                        return false;
+                    }
+                default:
+                    {
+                        return LocalStorage.SaveJSONData(result);
+                    }
             }
-            return false;
         }
         public void Start()
         {

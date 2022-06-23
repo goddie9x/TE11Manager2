@@ -27,6 +27,8 @@ namespace TE11Manager.View
             set
             {
                 isInStorage = value;
+                UnbanBtn.Visible = !isInStorage;
+                BanBtn.Text = isInStorage ? "Ban" : "Permanently ban";
                 GetUsers();
             }
         }
@@ -57,19 +59,19 @@ namespace TE11Manager.View
             {
                 currentPage = value;
                 isNeedToGetSchedule = true;
-                if (currentPage < 1)
+                if (currentPage < 1 && totalRecord > 0)
                 {
                     MessageBox.Show("We are on the first page");
                     currentPage = 1;
                     isNeedToGetSchedule = false;
                 }
-                if (currentPage > TotalPage)
+                if (currentPage > TotalPage && totalRecord > 0)
                 {
                     MessageBox.Show("We are on the last page");
                     currentPage = TotalPage;
                     isNeedToGetSchedule = false;
                 }
-                IsFirstPage = currentPage == 0;
+                IsFirstPage = currentPage == 1;
                 IsEndPage = currentPage == totalPage;
                 PageInputField.Text = "" + currentPage;
                 if (isNeedToGetSchedule)
@@ -104,7 +106,7 @@ namespace TE11Manager.View
             {
                 totalRecord = value;
                 int tempTotal = totalRecord / perPage;
-                TotalPage = TotalPage % perPage == 0 ? tempTotal : tempTotal + 1;
+                TotalPage = totalRecord % perPage != 0 ? tempTotal + 1 : tempTotal;
             }
         }
         #endregion
@@ -120,7 +122,7 @@ namespace TE11Manager.View
         }
         private void GetUsers()
         {
-            usersInfo = controller.GetData<Users>("user/manager/?page=" + currentPage + "&perPage=" + perPage);
+            usersInfo = controller.GetDataWithPostMethod<Users>("user/manager/?page=" + currentPage + "&perPage=" + perPage);
             if (usersInfo != null)
             {
                 RenderUsers();
@@ -187,6 +189,7 @@ namespace TE11Manager.View
         private void SwicthStoreBtn_Click(object sender, System.EventArgs e)
         {
             IsInStorage = !IsInStorage;
+            CurrentPage = 1;
         }
 
         private void SchedluleGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -194,9 +197,69 @@ namespace TE11Manager.View
             rowSelectedIndex = e.RowIndex;
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void BanBtn_Click(object sender, System.EventArgs e)
         {
+            if (rowSelectedIndex != null)
+            {
+                User user = usersInfo.users[rowSelectedIndex];
+                if (controller.DeleteDataForType("user/" + (IsInStorage ? "ban" : "trash") + "/", user._id))
+                {
+                    GetUsers();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not select any row");
+            }
+            
+        }
 
+        private void FormUsers_Load(object sender, System.EventArgs e)
+        {
+            CurrentPage = 1;
+        }
+
+        private void SwicthStoreBtn_Click_1(object sender, System.EventArgs e)
+        {
+            IsInStorage = !IsInStorage;
+        }
+
+        private void UnbanBtn_Click(object sender, System.EventArgs e)
+        {
+            if (rowSelectedIndex != null)
+            {
+                User user = usersInfo.users[rowSelectedIndex];
+                if (controller.DeleteDataForType("user/unban/", user._id))
+                {
+                    GetUsers();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not select any row");
+            }
+        }
+
+        private void ViewBtn_Click(object sender, System.EventArgs e)
+        {
+            if (rowSelectedIndex != null)
+            {
+                FormInfomation formInfomation = new FormInfomation(usersInfo.users[rowSelectedIndex]._id);
+                FormMain.instance.Hide();
+                formInfomation.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You are not select any row");
+            }
         }
     }
 }

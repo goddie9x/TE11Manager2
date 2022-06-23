@@ -42,7 +42,7 @@ namespace TE11Manager.View
             this.ColPartOfDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDayStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDayEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PaginationPanel = new System.Windows.Forms.Panel();
             this.PaginationNavPanel = new System.Windows.Forms.Panel();
             this.PageInputField = new System.Windows.Forms.TextBox();
@@ -54,9 +54,12 @@ namespace TE11Manager.View
             this.label2 = new System.Windows.Forms.Label();
             this.PerPageSelect = new System.Windows.Forms.ComboBox();
             this.SwicthStoreBtn = new System.Windows.Forms.Button();
+            this.RestoreBtn = new System.Windows.Forms.Button();
+            this.ManagerPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SchedluleGrid)).BeginInit();
             this.PaginationPanel.SuspendLayout();
             this.PaginationNavPanel.SuspendLayout();
+            this.ManagerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +77,8 @@ namespace TE11Manager.View
             // DeleteBtn
             // 
             this.DeleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.DeleteBtn.Location = new System.Drawing.Point(694, 34);
+            this.DeleteBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteBtn.Location = new System.Drawing.Point(464, 4);
             this.DeleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(78, 27);
@@ -95,7 +99,7 @@ namespace TE11Manager.View
             this.ColPartOfDay,
             this.ColDayStart,
             this.ColDayEnd,
-            this.Id});
+            this._id});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -160,11 +164,11 @@ namespace TE11Manager.View
             this.ColDayEnd.Name = "ColDayEnd";
             this.ColDayEnd.Width = 115;
             // 
-            // Id
+            // _id
             // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
+            this._id.HeaderText = "_id";
+            this._id.Name = "_id";
+            this._id.Visible = false;
             // 
             // PaginationPanel
             // 
@@ -275,7 +279,8 @@ namespace TE11Manager.View
             // SwicthStoreBtn
             // 
             this.SwicthStoreBtn.BackColor = System.Drawing.Color.Cyan;
-            this.SwicthStoreBtn.Location = new System.Drawing.Point(464, 37);
+            this.SwicthStoreBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SwicthStoreBtn.Location = new System.Drawing.Point(3, 6);
             this.SwicthStoreBtn.Name = "SwicthStoreBtn";
             this.SwicthStoreBtn.Size = new System.Drawing.Size(75, 23);
             this.SwicthStoreBtn.TabIndex = 5;
@@ -283,28 +288,50 @@ namespace TE11Manager.View
             this.SwicthStoreBtn.UseVisualStyleBackColor = false;
             this.SwicthStoreBtn.Click += new System.EventHandler(this.SwicthStoreBtn_Click);
             // 
+            // RestoreBtn
+            // 
+            this.RestoreBtn.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.RestoreBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RestoreBtn.Location = new System.Drawing.Point(300, 6);
+            this.RestoreBtn.Name = "RestoreBtn";
+            this.RestoreBtn.Size = new System.Drawing.Size(75, 23);
+            this.RestoreBtn.TabIndex = 6;
+            this.RestoreBtn.Text = "Restore";
+            this.RestoreBtn.UseVisualStyleBackColor = false;
+            this.RestoreBtn.Visible = false;
+            this.RestoreBtn.Click += new System.EventHandler(this.RestoreBtn_Click);
+            // 
+            // ManagerPanel
+            // 
+            this.ManagerPanel.Controls.Add(this.SwicthStoreBtn);
+            this.ManagerPanel.Controls.Add(this.RestoreBtn);
+            this.ManagerPanel.Controls.Add(this.DeleteBtn);
+            this.ManagerPanel.Location = new System.Drawing.Point(243, 24);
+            this.ManagerPanel.Name = "ManagerPanel";
+            this.ManagerPanel.Size = new System.Drawing.Size(566, 36);
+            this.ManagerPanel.TabIndex = 7;
+            // 
             // FormSchedules
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1250, 450);
-            this.Controls.Add(this.SwicthStoreBtn);
+            this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.PaginationPanel);
             this.Controls.Add(this.SchedluleGrid);
-            this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormSchedules";
             this.Text = " ";
             this.Load += new System.EventHandler(this.FormSchedules_Load);
-            this.Shown += new System.EventHandler(this.FormSchedules_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.SchedluleGrid)).EndInit();
             this.PaginationPanel.ResumeLayout(false);
             this.PaginationPanel.PerformLayout();
             this.PaginationNavPanel.ResumeLayout(false);
             this.PaginationNavPanel.PerformLayout();
+            this.ManagerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,15 +342,7 @@ namespace TE11Manager.View
         private Label label1;
         private Button DeleteBtn;
         private DataGridViewTextBoxColumn ColId;
-        private DataGridViewTextBoxColumn ColName;
-        private DataGridViewTextBoxColumn ColRoom;
-        private DataGridViewTextBoxColumn ColTime;
-        private DataGridViewTextBoxColumn ColDayOfWeek;
-        private DataGridViewTextBoxColumn ColPartOfDay;
-        private DataGridViewTextBoxColumn ColDayStart;
-        private DataGridViewTextBoxColumn ColDayEnd;
         private DataGridView SchedluleGrid;
-        private DataGridViewCheckBoxColumn ColSelect;
         private Panel PaginationPanel;
         private Button MoveToPageBtn;
         private Button NextPageBtn;
@@ -335,6 +354,16 @@ namespace TE11Manager.View
         private Button PrevPageBtn;
         private Button SwicthStoreBtn;
         private Panel PaginationNavPanel;
-        private DataGridViewTextBoxColumn Id;
+        private DataGridViewCheckBoxColumn ColSelect;
+        private DataGridViewTextBoxColumn ColName;
+        private DataGridViewTextBoxColumn ColRoom;
+        private DataGridViewTextBoxColumn ColTime;
+        private DataGridViewTextBoxColumn ColDayOfWeek;
+        private DataGridViewTextBoxColumn ColPartOfDay;
+        private DataGridViewTextBoxColumn ColDayStart;
+        private DataGridViewTextBoxColumn ColDayEnd;
+        private DataGridViewTextBoxColumn _id;
+        private Button RestoreBtn;
+        private Panel ManagerPanel;
     }
 }

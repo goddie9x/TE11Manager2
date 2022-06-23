@@ -15,12 +15,9 @@ namespace TE11Manager.View
         }
         public void CheckUserLogged()
         {
+            this.Hide();
             FormLogin.user = controller.GetUserData();
-            if (FormLogin.user != null)
-            {
-                FormMain formMain = new FormMain();
-                ThreadForm.ShowOtherFormAndHideCurrentForm(formMain, this, true);
-            }
+            Program.login.CheckUserLogged();
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -38,7 +35,7 @@ namespace TE11Manager.View
                 MessageBox.Show("Password and confirm password must be same");
                 return;
             }
-            if (userName == "" || password == ""|| email=="")
+            if (userName == "" || password == "" || email=="")
             {
                 MessageBox.Show("All fields must not be empty");
                 return;
@@ -47,15 +44,16 @@ namespace TE11Manager.View
             {
                 CheckUserLogged();
             }
-            else
-            {
-                MessageBox.Show("Register failed");
-            }
         }
 
         private void LoginLabel_Click(object sender, EventArgs e)
         {
             ThreadForm.ShowOtherFormAndHideCurrentForm(Program.login, this,true);
+        }
+
+        private void FormRegister_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -38,14 +38,10 @@
             this.btnschedule = new FontAwesome.Sharp.IconButton();
             this.btndashboard = new FontAwesome.Sharp.IconButton();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.labelTitleChild = new System.Windows.Forms.Label();
-            this.iconCurentChild = new FontAwesome.Sharp.IconPictureBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvatarImage)).BeginInit();
-            this.mainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCurentChild)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -66,6 +62,7 @@
             // logoutBtn
             // 
             this.logoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logoutBtn.FlatAppearance.BorderSize = 0;
             this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutBtn.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -91,6 +88,7 @@
             // btnuser
             // 
             this.btnuser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnuser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnuser.FlatAppearance.BorderSize = 0;
             this.btnuser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnuser.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -141,6 +139,7 @@
             this.AvatarImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AvatarImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AvatarImage.Image = ((System.Drawing.Image)(resources.GetObject("AvatarImage.Image")));
             this.AvatarImage.Location = new System.Drawing.Point(48, 42);
             this.AvatarImage.Name = "AvatarImage";
@@ -148,10 +147,12 @@
             this.AvatarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.AvatarImage.TabIndex = 0;
             this.AvatarImage.TabStop = false;
+            this.AvatarImage.Click += new System.EventHandler(this.AvatarImage_Click);
             // 
             // btnschedule
             // 
             this.btnschedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnschedule.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnschedule.FlatAppearance.BorderSize = 0;
             this.btnschedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnschedule.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -177,6 +178,7 @@
             // btndashboard
             // 
             this.btndashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btndashboard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btndashboard.FlatAppearance.BorderSize = 0;
             this.btndashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndashboard.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -203,37 +205,12 @@
             // 
             this.mainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.mainPanel.Controls.Add(this.labelTitleChild);
-            this.mainPanel.Controls.Add(this.iconCurentChild);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(224, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1005, 600);
             this.mainPanel.TabIndex = 1;
             this.mainPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
-            // 
-            // labelTitleChild
-            // 
-            this.labelTitleChild.AutoSize = true;
-            this.labelTitleChild.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitleChild.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelTitleChild.Location = new System.Drawing.Point(56, 26);
-            this.labelTitleChild.Name = "labelTitleChild";
-            this.labelTitleChild.Size = new System.Drawing.Size(52, 21);
-            this.labelTitleChild.TabIndex = 1;
-            this.labelTitleChild.Text = "Home";
-            // 
-            // iconCurentChild
-            // 
-            this.iconCurentChild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.iconCurentChild.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.iconCurentChild.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.iconCurentChild.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.iconCurentChild.Location = new System.Drawing.Point(18, 26);
-            this.iconCurentChild.Name = "iconCurentChild";
-            this.iconCurentChild.Size = new System.Drawing.Size(32, 32);
-            this.iconCurentChild.TabIndex = 0;
-            this.iconCurentChild.TabStop = false;
             // 
             // panelDesktop
             // 
@@ -272,9 +249,6 @@
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvatarImage)).EndInit();
-            this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCurentChild)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,8 +262,6 @@
         private FontAwesome.Sharp.IconButton btndashboard;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel mainPanel;
-        private FontAwesome.Sharp.IconPictureBox iconCurentChild;
-        private System.Windows.Forms.Label labelTitleChild;
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.PictureBox AvatarImage;
         private System.Windows.Forms.Label UserFullNameLabel;

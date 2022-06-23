@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.UsersGrid = new System.Windows.Forms.DataGridView();
             this.ColSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -36,7 +36,7 @@
             this.ColAcc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColUserrole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BanBtn = new System.Windows.Forms.Button();
             this.PaginationPanel = new System.Windows.Forms.Panel();
             this.PaginationNavPanel = new System.Windows.Forms.Panel();
             this.PageInputField = new System.Windows.Forms.TextBox();
@@ -48,9 +48,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.PerPageSelect = new System.Windows.Forms.ComboBox();
             this.SwicthStoreBtn = new System.Windows.Forms.Button();
+            this.UnbanBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ViewBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UsersGrid)).BeginInit();
             this.PaginationPanel.SuspendLayout();
             this.PaginationNavPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,14 +71,14 @@
             // 
             // UsersGrid
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.UsersGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.UsersGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.UsersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UsersGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSelect,
@@ -131,17 +135,18 @@
             this.checkBox1.Text = "Select all";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BanBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button1.Location = new System.Drawing.Point(133, 41);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 26);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Ban";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BanBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.BanBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BanBtn.Location = new System.Drawing.Point(2, 2);
+            this.BanBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.BanBtn.Name = "BanBtn";
+            this.BanBtn.Size = new System.Drawing.Size(50, 26);
+            this.BanBtn.TabIndex = 3;
+            this.BanBtn.Text = "Ban";
+            this.BanBtn.UseVisualStyleBackColor = false;
+            this.BanBtn.Click += new System.EventHandler(this.BanBtn_Click);
             // 
             // PaginationPanel
             // 
@@ -252,12 +257,51 @@
             // SwicthStoreBtn
             // 
             this.SwicthStoreBtn.BackColor = System.Drawing.Color.Cyan;
-            this.SwicthStoreBtn.Location = new System.Drawing.Point(535, 41);
+            this.SwicthStoreBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SwicthStoreBtn.Location = new System.Drawing.Point(455, 2);
             this.SwicthStoreBtn.Name = "SwicthStoreBtn";
-            this.SwicthStoreBtn.Size = new System.Drawing.Size(75, 23);
+            this.SwicthStoreBtn.Size = new System.Drawing.Size(108, 23);
             this.SwicthStoreBtn.TabIndex = 11;
             this.SwicthStoreBtn.Text = "SwicthStoreBtn";
             this.SwicthStoreBtn.UseVisualStyleBackColor = false;
+            this.SwicthStoreBtn.Click += new System.EventHandler(this.SwicthStoreBtn_Click_1);
+            // 
+            // UnbanBtn
+            // 
+            this.UnbanBtn.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.UnbanBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UnbanBtn.Location = new System.Drawing.Point(100, 2);
+            this.UnbanBtn.Name = "UnbanBtn";
+            this.UnbanBtn.Size = new System.Drawing.Size(75, 23);
+            this.UnbanBtn.TabIndex = 12;
+            this.UnbanBtn.Text = "Un ban";
+            this.UnbanBtn.UseVisualStyleBackColor = false;
+            this.UnbanBtn.Visible = false;
+            this.UnbanBtn.Click += new System.EventHandler(this.UnbanBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ViewBtn);
+            this.panel1.Controls.Add(this.BanBtn);
+            this.panel1.Controls.Add(this.SwicthStoreBtn);
+            this.panel1.Controls.Add(this.UnbanBtn);
+            this.panel1.Location = new System.Drawing.Point(164, 37);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(668, 30);
+            this.panel1.TabIndex = 13;
+            // 
+            // ViewBtn
+            // 
+            this.ViewBtn.BackColor = System.Drawing.Color.GreenYellow;
+            this.ViewBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ViewBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ViewBtn.Location = new System.Drawing.Point(230, 2);
+            this.ViewBtn.Name = "ViewBtn";
+            this.ViewBtn.Size = new System.Drawing.Size(75, 23);
+            this.ViewBtn.TabIndex = 13;
+            this.ViewBtn.Text = "View";
+            this.ViewBtn.UseVisualStyleBackColor = false;
+            this.ViewBtn.Click += new System.EventHandler(this.ViewBtn_Click);
             // 
             // FormUsers
             // 
@@ -265,20 +309,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1000, 450);
-            this.Controls.Add(this.SwicthStoreBtn);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.PaginationPanel);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.UsersGrid);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormUsers";
             this.Text = "FormUsers";
+            this.Load += new System.EventHandler(this.FormUsers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UsersGrid)).EndInit();
             this.PaginationPanel.ResumeLayout(false);
             this.PaginationPanel.PerformLayout();
             this.PaginationNavPanel.ResumeLayout(false);
             this.PaginationNavPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,7 +338,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAcc;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColUserrole;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BanBtn;
         private System.Windows.Forms.Panel PaginationPanel;
         private System.Windows.Forms.Panel PaginationNavPanel;
         private System.Windows.Forms.TextBox PageInputField;
@@ -305,5 +350,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox PerPageSelect;
         private System.Windows.Forms.Button SwicthStoreBtn;
+        private System.Windows.Forms.Button UnbanBtn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button ViewBtn;
     }
 }

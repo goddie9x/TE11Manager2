@@ -106,6 +106,7 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnLogin.Location = new System.Drawing.Point(204, 328);
@@ -120,6 +121,7 @@
             // RegisterLabel
             // 
             this.RegisterLabel.AutoSize = true;
+            this.RegisterLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RegisterLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.RegisterLabel.Location = new System.Drawing.Point(133, 292);
             this.RegisterLabel.Name = "RegisterLabel";

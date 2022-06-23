@@ -313,6 +313,7 @@
     <Compile Include="DataType\Dashboard.cs" />
     <Compile Include="DataType\Post.cs" />
     <Compile Include="DataType\Schedule.cs" />
+    <Compile Include="DataType\ListItemInfoStored.cs" />
     <Compile Include="DataType\UserInfoForUserLogin.cs" />
     <Compile Include="DataType\Users.cs" />
     <Compile Include="DataType\Schedules.cs" />
@@ -330,6 +331,12 @@
     <Compile Include="View\FormDashboard.Designer.cs">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormInfomation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormInfomation.designer.cs">
+      <DependentUpon>FormInfomation.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,23 +349,11 @@
     <Compile Include="View\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\FormManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\FormManager.Designer.cs">
-      <DependentUpon>FormManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\FormSchedules.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\FormSchedules.Designer.cs">
       <DependentUpon>FormSchedules.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FormUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\FormUser.Designer.cs">
-      <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormUsers.cs">
       <SubType>Form</SubType>
@@ -379,20 +374,17 @@
     <EmbeddedResource Include="View\FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormInfomation.resx">
+      <DependentUpon>FormInfomation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\FormManager.resx">
-      <DependentUpon>FormManager.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\FormSchedules.resx">
       <DependentUpon>FormSchedules.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FormUser.resx">
-      <DependentUpon>FormUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormUsers.resx">
       <DependentUpon>FormUsers.cs</DependentUpon>

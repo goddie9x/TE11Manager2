@@ -13,13 +13,14 @@ namespace TE11Manager.View
         public readonly int[] PerPages = { 5, 10, 20, 50 };
         private int currentPage;
         private int perPage;
-        private int totalRecord = 0;
+        private int totalRecord;
         private int totalPage = 0;
         private bool isFirstPage = false;
         private bool isEndPage = false;
         private bool isNeedToGetSchedule = true;
         private bool isInStorage = true;
         private int rowSelectedIndex;
+        private bool canManager = FormLogin.user.role < 2;
 
         public bool IsInStorage
         {
@@ -27,6 +28,7 @@ namespace TE11Manager.View
             set
             {
                 isInStorage = value;
+                DeleteBtn.Text = isInStorage ? "Detete" : "Force delete";
                 GetSchedules();
             }
         }
@@ -46,8 +48,8 @@ namespace TE11Manager.View
             set
             {
                 isEndPage = value;
-                NextPageBtn.Visible = !isFirstPage;
-                MoveToEndPageBtn.Visible = !isFirstPage;
+                NextPageBtn.Visible = !isEndPage;
+                MoveToEndPageBtn.Visible = !isEndPage;
             }
         }
         public int CurrentPage
@@ -56,13 +58,13 @@ namespace TE11Manager.View
             set { 
                 currentPage = value;
                 isNeedToGetSchedule = true;
-                if (currentPage < 1)
+                if (currentPage < 1&& totalRecord>0)
                 {
                     MessageBox.Show("We are on the first page");
                     currentPage = 1;
                     isNeedToGetSchedule = false;
                 }
-                if (currentPage > TotalPage)
+                if (currentPage > TotalPage && totalRecord > 0)
                 {
                     MessageBox.Show("We are on the last page");
                     currentPage = TotalPage;
@@ -103,11 +105,12 @@ namespace TE11Manager.View
             {
                 totalRecord = value;
                 int tempTotal = totalRecord / perPage;
-                TotalPage = TotalPage % perPage==0? tempTotal: tempTotal + 1;
+                TotalPage = totalRecord % perPage!=0? tempTotal + 1: tempTotal;
             }
         }
         public FormSchedules()
         {
+            Cursor.Current = Cursors.WaitCursor;
             InitializeComponent();
             perPage = PerPages[0];
             foreach(int PerPage in PerPages)
@@ -118,19 +121,25 @@ namespace TE11Manager.View
         }
         private void GetSchedules()
         {
-            scheduleInfo = controller.GetData<Schedules>("schedules/"+ (IsInStorage ? "stored": "trash") + "?page=" + (currentPage-1) + "&perPage=" + perPage);
+            Cursor.Current = Cursors.WaitCursor;
+            if (canManager)
+            {
+                scheduleInfo = controller.GetDataWithPostMethod<Schedules>("schedules/"+ (IsInStorage ? "stored": "trash") + "?page=" + (currentPage-1) + "&perPage=" + perPage);
+            }
+            else
+            {
+                scheduleInfo = controller.GetDataWithPostMethod<Schedules>("schedules/"+ "?page=" + currentPage + "&perPage=" + perPage);
+
+            }
             if (scheduleInfo != null)
             {
                 RenderSchedules();
             }
             else
             {
-                MessageBox.Show("Something went wrong or you have no permission");
+                MessageBox.Show("Something went wrong, please try again latter");
             }
-        }
-        private void FormSchedules_Shown(object sender, System.EventArgs e)
-        {
-            CurrentPage = 1;
+            Cursor.Current = Cursors.Default;
         }
         private void RenderSchedules()
         {
@@ -160,14 +169,14 @@ namespace TE11Manager.View
             }
             else{
                 currentPage = tempCrrPage;
-                if (currentPage < 1)
+                if (currentPage < 1 && totalRecord > 0)
                 {
-                    MessageBox.Show("You are enter out of total page");
+                    MessageBox.Show("You are enter out of page range");
                     currentPage = 1;
                 }
-                if (currentPage > TotalPage)
+                if (currentPage > TotalPage  && totalRecord > 0)
                 {
-                    MessageBox.Show("You are enter out of total page");
+                    MessageBox.Show("You are enter out of page range");
                     currentPage = TotalPage;
                 }
                 PageInputField.Text = "" + currentPage;
@@ -181,7 +190,7 @@ namespace TE11Manager.View
 
         private void PageFirstBtn_Click(object sender, System.EventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage = 1;
         }
 
         private void PrevPageBtn_Click(object sender, System.EventArgs e)
@@ -202,6 +211,8 @@ namespace TE11Manager.View
         private void SwicthStoreBtn_Click(object sender, System.EventArgs e)
         {
             IsInStorage = !IsInStorage;
+            RestoreBtn.Visible = !IsInStorage;
+            CurrentPage = 1;
         }
 
         private void SchedluleGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -214,7 +225,7 @@ namespace TE11Manager.View
             if(rowSelectedIndex!= null)
             {
                 Schedule schedule = scheduleInfo.schedules[rowSelectedIndex];
-                if(controller.DeleteDataForType("schedules/" + (IsInStorage ? "stored" : "trash") + "/", schedule.Id))
+                if(controller.DeleteDataForType("schedules/" + (IsInStorage ? "stored" : "trash") + "/", schedule._id))
                 {
                     GetSchedules();
                 }
@@ -223,11 +234,36 @@ namespace TE11Manager.View
                     MessageBox.Show("Something went wrong");
                 }
             }
+            else
+            {
+                MessageBox.Show("You are not select any row");
+            }
         }
 
         private void FormSchedules_Load(object sender, System.EventArgs e)
         {
             CurrentPage = 1;
+            ManagerPanel.Visible = canManager;
+        }
+
+        private void RestoreBtn_Click(object sender, System.EventArgs e)
+        {
+            if (rowSelectedIndex != null)
+            {
+                Schedule schedule = scheduleInfo.schedules[rowSelectedIndex];
+                if (controller.RestoreDataForType("schedules/restore/",schedule._id))
+                {
+                    GetSchedules();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not select any row");
+            }
         }
     }
 }

@@ -27,20 +27,18 @@ namespace TE11Manager.View
         }
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string userName = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
             if (userName == "" || password == "")
             {
                 MessageBox.Show("User name and password must not be empty");
+                Cursor.Current = Cursors.WaitCursor;
                 return;
             }
             controller.Login(userName, password);
-            
             user = controller.GetUserData();
-            if (!CheckUserLogged())
-            {
-                MessageBox.Show("User name or password is incorrect");
-            }
+            CheckUserLogged();
         }
 
         private void RegisterLabel_Click(object sender, EventArgs e)

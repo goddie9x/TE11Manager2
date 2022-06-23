@@ -30,7 +30,7 @@
         }
         public string ToJSONForRegister()
         {
-            string json = "{\"account\":\"" + account + "\",\"password\":\"" + password + "\",\"email\":[\"" + email + "\"]}";
+            string json = "{\"account\":\"" + account + "\",\"password\":\"" + password + "\",\"email\":\"" + email + "\"}";
             return json;
         }
         #endregion

@@ -12,8 +12,10 @@ namespace TE11Manager.View
         private Panel leftBorderBtn;
         private Form currentChildForm;
         private MainController controller = new MainController();
+        public static FormMain instance;
         public FormMain()
         {
+            Cursor.Current = Cursors.WaitCursor;
             InitializeComponent();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
@@ -24,6 +26,7 @@ namespace TE11Manager.View
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             OpenChildForm(new FormDashboard());
             InitUserInfo();
+            instance = this;
         } 
         private void InitUserInfo()
         {
@@ -32,6 +35,7 @@ namespace TE11Manager.View
                 UserFullNameLabel.Text = (FormLogin.user.fullName!=""&& FormLogin.user.fullName !=null) ? FormLogin.user.fullName: "No name";
                 AvatarImage.ImageLocation = FormLogin.user.image;
             }
+            Cursor.Current = Cursors.Default;
         }
         private struct RGBColors
         {
@@ -44,6 +48,7 @@ namespace TE11Manager.View
         }
         private void ActivateButton(object senderBtn, Color color)
         {
+            Cursor.Current = Cursors.WaitCursor;
             if (senderBtn != null)
             {
                 DisableButton();
@@ -60,10 +65,8 @@ namespace TE11Manager.View
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
-                //Current Child Form Icon
-                iconCurentChild.IconChar = currentBtn.IconChar;
-                iconCurentChild.IconColor = color;
             }
+            Cursor.Current = Cursors.Default;
         }
         private void DisableButton()
         {
@@ -94,15 +97,11 @@ namespace TE11Manager.View
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            labelTitleChild.Text = childForm.Text;
         }
         private void Reset()
         {
             DisableButton();
             leftBorderBtn.Visible = false;
-            iconCurentChild.IconChar = IconChar.Home;
-            iconCurentChild.IconColor = Color.MediumPurple;
-            labelTitleChild.Text = "Home";
         }
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -149,6 +148,15 @@ namespace TE11Manager.View
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void AvatarImage_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            FormInfomation formInfomation = new FormInfomation();
+            this.Hide();
+            Cursor.Current = Cursors.Default;
+            formInfomation.ShowDialog();
         }
     }
 }
