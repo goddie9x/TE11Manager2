@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace TE11Manager.Util
 {
     internal static class LocalStorage
     {
         private static readonly string localFilePath = "min_db.db";
-        public static void RemoveBracesFirstAndEnd(ref string target) {
+        public static void RemoveBracesFirstAndEnd(ref string target)
+        {
             target = target.Trim();
             target = target.Substring(1, target.Length - 2);
         }
@@ -16,8 +18,10 @@ namespace TE11Manager.Util
         {
             target = "{" + target + "}";
         }
-        public static string GetItem(string key,bool containValue = false)
+        public static string GetItem(string key, bool containValue = false)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             string localStore = "";
             try
             {
@@ -45,17 +49,23 @@ namespace TE11Manager.Util
             {
                 AddBracesFirstAndEnd(ref value);
             }
+            Cursor.Current = Cursors.Default;
             return value;
         }
         public static bool SaveJSONData(string json)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             //we never have any json string with lenght < 1
-            if (json.Length<1) {
+            if (json.Length < 1)
+            {
+                Cursor.Current = Cursors.Default;
+
                 return false;
             }
             //{"example":"example"}=> "example":"example" endValC#
             RemoveBracesFirstAndEnd(ref json);
-            string stringRemovedCurlyBracesFirstAndEnd = json+"endValC#";
+            string stringRemovedCurlyBracesFirstAndEnd = json + "endValC#";
             string[] listKeyValue = stringRemovedCurlyBracesFirstAndEnd.Split(',');
             string localStore;
             try
@@ -69,7 +79,7 @@ namespace TE11Manager.Util
                     string pattern = @"(?<=" + key + @":).*?(?=endValC#)";
                     if (localStore.Contains(key))
                     {
-                        localStore = Regex.Replace(localStore,pattern, value);
+                        localStore = Regex.Replace(localStore, pattern, value);
                     }
                     else
                     {
@@ -82,15 +92,20 @@ namespace TE11Manager.Util
             {
                 File.WriteAllText(localFilePath, stringRemovedCurlyBracesFirstAndEnd);
             }
+            Cursor.Current = Cursors.Default;
+
             return true;
         }
         public static void RemoveItem(string key)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             string localStore = File.ReadAllText(localFilePath);
             string pattern = @"^""" + key + @""":.*?endValC#*?$";
-            
+
             localStore = Regex.Replace(localStore, pattern, "");
             File.WriteAllText(localFilePath, localStore);
+            Cursor.Current = Cursors.Default;
         }
     }
 }

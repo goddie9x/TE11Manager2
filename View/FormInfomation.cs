@@ -24,6 +24,10 @@ namespace TE11Manager.View
                 isEditing = value;
                 InfoPanel.Visible = !isEditing;
                 InputPanel.Visible = isEditing;
+                if (isEditing)
+                {
+                    InitEditInfo();
+                }
             }
         }
         public FormInfomation(string _id)
@@ -39,9 +43,8 @@ namespace TE11Manager.View
                 formMain.ShowDialog();
                 return;
             }
-            EditBtn.Visible = false;
             InitUserData();
-            BanBtn.Visible = currUser.role > user.role;
+            BanBtn.Visible = currUser.role < user.role;
         }
         public FormInfomation()
         {
@@ -50,7 +53,6 @@ namespace TE11Manager.View
             user = currUser;
             InitUserData();
             EditBtn.Visible = true;
-            InitEditInfo();
         }
         private void InitUserData()
         {
@@ -64,7 +66,7 @@ namespace TE11Manager.View
                 PhoneLabel.Text = user.phone[0];
             }
             DateOfBirthLabel.Text = user.dateOfBirth;
-            GenderField.Text = user.gender;
+            GenderLabel.Text = user.gender;
             DescriptionLabel.Text = user.address;
             SubDescriptionLabel.Text = user.subDescription;
             QuoteLabel.Text = user.quote;
@@ -82,7 +84,15 @@ namespace TE11Manager.View
             {
                 PhoneField.Text = user.phone[0];
             }
-            DateOfBirthPicker.Value = DateTime.ParseExact(user.dateOfBirth, "yyyy-MM-dd", null).Date;
+            try
+            {
+                DateOfBirthPicker.Value = DateTime.ParseExact(user.dateOfBirth, "yyyy-MM-dd", null).Date;
+            }
+            catch(Exception e)
+            {
+                DateOfBirthPicker.Value = DateTime.ParseExact(user.dateOfBirth, "dd/MM/yyyy", null).Date;
+            }
+            DateOfBirthPicker.Update();
             GenderField.Text = user.gender;
             DescriptionField.Text = user.address;
             SubDescriptionField.Text = user.subDescription;
@@ -117,10 +127,10 @@ namespace TE11Manager.View
             }
             user.dateOfBirth = DateOfBirthPicker.Value.ToString("dd/MM/yyyy");
             user.gender = GenderField.Text;
-            user.address = DescriptionLabel.Text;
-            user.subDescription = SubDescriptionLabel.Text;
-            user.quote = QuoteLabel.Text;
-            user.address = AddressLabel.Text;
+            user.address = DescriptionField.Text;
+            user.subDescription = SubDescriptionField.Text;
+            user.quote = QuoteField.Text;
+            user.address = AddressField.Text;
         }
         private void ConfirmBtn_Click(object sender, System.EventArgs e)
         {
@@ -128,14 +138,15 @@ namespace TE11Manager.View
             {
                 SetUserDataByFields();
                 string userJsonData = JSONParse.convertStringToJson<User>(user);
-                MessageBox.Show(userJsonData);
-                if(mainController.PatchDataForType("user", user._id, userJsonData))
+                if(mainController.PatchDataForType("user/profile/", user._id, userJsonData))
                 {
                     InitUserData();
+                    MessageBox.Show("Update the infomation success!");
+                    IsEditing = false;
                 }
                 else
                 {
-                    MessageBox.Show("Update the infomation success!");
+                    MessageBox.Show("Update the infomation Failed!");
                 }
             }
         }

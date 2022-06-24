@@ -1,6 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 using TE11Manager.Controller;
 using TE11Manager.DataType;
+using TE11Manager.Util;
 
 namespace TE11Manager.View
 {
@@ -215,7 +218,7 @@ namespace TE11Manager.View
             CurrentPage = 1;
         }
 
-        private void SchedluleGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SchedluleGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowSelectedIndex = e.RowIndex;
         }
@@ -264,6 +267,20 @@ namespace TE11Manager.View
             {
                 MessageBox.Show("You are not select any row");
             }
+        }
+
+        private void ExportBtn_Click(object sender, System.EventArgs e)
+        {
+            DataTable scheduleDT = new DataTable();
+            scheduleDT.Columns.AddRange(new[] { "Name", "Room", "Time", "DaysOfWeek", "PartOfDay", "DayStart", "DayEnd" }.Select(s => new DataColumn(s)).ToArray());
+            foreach (Schedule schedule in scheduleInfo.schedules)
+            {
+                scheduleDT.Rows.Add(
+                    schedule.Name, schedule.Room, schedule.Time,
+                    DaysOfWeek[schedule.DayOfWeek], PartsOfDay[schedule.PartOfDay],
+                    schedule.DayStart, schedule.DayEnd);
+            }
+            ExcelHandle.ExportExcelByDataTable(scheduleDT, true, "schedules.xlsx");
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.UsersGrid = new System.Windows.Forms.DataGridView();
             this.ColSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -71,14 +71,14 @@
             // 
             // UsersGrid
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.UsersGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.UsersGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.UsersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UsersGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSelect,
@@ -88,10 +88,13 @@
             this.UsersGrid.Location = new System.Drawing.Point(50, 74);
             this.UsersGrid.Margin = new System.Windows.Forms.Padding(2);
             this.UsersGrid.Name = "UsersGrid";
+            this.UsersGrid.RowHeadersVisible = false;
             this.UsersGrid.RowHeadersWidth = 5;
             this.UsersGrid.RowTemplate.Height = 28;
             this.UsersGrid.Size = new System.Drawing.Size(905, 325);
             this.UsersGrid.TabIndex = 1;
+            this.UsersGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SchedluleGrid_CellClick);
+            this.UsersGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersGrid_CellEndEdit);
             // 
             // ColSelect
             // 
@@ -121,6 +124,7 @@
             this.ColUserrole.HeaderText = "User role";
             this.ColUserrole.MinimumWidth = 8;
             this.ColUserrole.Name = "ColUserrole";
+            this.ColUserrole.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColUserrole.Width = 300;
             // 
             // checkBox1
@@ -139,10 +143,10 @@
             // 
             this.BanBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.BanBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BanBtn.Location = new System.Drawing.Point(2, 2);
+            this.BanBtn.Location = new System.Drawing.Point(25, 2);
             this.BanBtn.Margin = new System.Windows.Forms.Padding(2);
             this.BanBtn.Name = "BanBtn";
-            this.BanBtn.Size = new System.Drawing.Size(50, 26);
+            this.BanBtn.Size = new System.Drawing.Size(150, 26);
             this.BanBtn.TabIndex = 3;
             this.BanBtn.Text = "Ban";
             this.BanBtn.UseVisualStyleBackColor = false;
@@ -258,7 +262,7 @@
             // 
             this.SwicthStoreBtn.BackColor = System.Drawing.Color.Cyan;
             this.SwicthStoreBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SwicthStoreBtn.Location = new System.Drawing.Point(455, 2);
+            this.SwicthStoreBtn.Location = new System.Drawing.Point(511, 2);
             this.SwicthStoreBtn.Name = "SwicthStoreBtn";
             this.SwicthStoreBtn.Size = new System.Drawing.Size(108, 23);
             this.SwicthStoreBtn.TabIndex = 11;
@@ -270,7 +274,7 @@
             // 
             this.UnbanBtn.BackColor = System.Drawing.Color.LightSteelBlue;
             this.UnbanBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UnbanBtn.Location = new System.Drawing.Point(100, 2);
+            this.UnbanBtn.Location = new System.Drawing.Point(212, 4);
             this.UnbanBtn.Name = "UnbanBtn";
             this.UnbanBtn.Size = new System.Drawing.Size(75, 23);
             this.UnbanBtn.TabIndex = 12;
@@ -295,7 +299,7 @@
             this.ViewBtn.BackColor = System.Drawing.Color.GreenYellow;
             this.ViewBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ViewBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ViewBtn.Location = new System.Drawing.Point(230, 2);
+            this.ViewBtn.Location = new System.Drawing.Point(367, 2);
             this.ViewBtn.Name = "ViewBtn";
             this.ViewBtn.Size = new System.Drawing.Size(75, 23);
             this.ViewBtn.TabIndex = 13;
@@ -333,10 +337,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView UsersGrid;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelect;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColAcc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColUserrole;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button BanBtn;
         private System.Windows.Forms.Panel PaginationPanel;
@@ -353,5 +353,9 @@
         private System.Windows.Forms.Button UnbanBtn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button ViewBtn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelect;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColAcc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColUserrole;
     }
 }

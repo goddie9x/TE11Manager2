@@ -48,6 +48,7 @@
             this.DateOfBirthPicker = new System.Windows.Forms.DateTimePicker();
             this.SubDescriptionField = new System.Windows.Forms.TextBox();
             this.InputPanel = new System.Windows.Forms.Panel();
+            this.CancelBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.QuoteField = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -87,7 +88,6 @@
             this.UserAvatar = new System.Windows.Forms.PictureBox();
             this.BackBtn = new System.Windows.Forms.Button();
             this.BanBtn = new System.Windows.Forms.Button();
-            this.CancelBtn = new System.Windows.Forms.Button();
             this.InputPanel.SuspendLayout();
             this.InfoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -328,6 +328,18 @@
             this.InputPanel.TabIndex = 28;
             this.InputPanel.Visible = false;
             // 
+            // CancelBtn
+            // 
+            this.CancelBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.CancelBtn.Location = new System.Drawing.Point(311, 504);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.CancelBtn.TabIndex = 60;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = false;
+            this.CancelBtn.Visible = false;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -462,7 +474,7 @@
             this.InfoPanel.Controls.Add(this.label27);
             this.InfoPanel.Controls.Add(this.label25);
             this.InfoPanel.Controls.Add(this.label26);
-            this.InfoPanel.Location = new System.Drawing.Point(186, 47);
+            this.InfoPanel.Location = new System.Drawing.Point(186, 51);
             this.InfoPanel.Name = "InfoPanel";
             this.InfoPanel.Size = new System.Drawing.Size(499, 446);
             this.InfoPanel.TabIndex = 29;
@@ -802,18 +814,6 @@
             this.BanBtn.UseVisualStyleBackColor = false;
             this.BanBtn.Visible = false;
             this.BanBtn.Click += new System.EventHandler(this.BanBtn_Click);
-            // 
-            // CancelBtn
-            // 
-            this.CancelBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.CancelBtn.Location = new System.Drawing.Point(311, 504);
-            this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.CancelBtn.TabIndex = 60;
-            this.CancelBtn.Text = "Cancel";
-            this.CancelBtn.UseVisualStyleBackColor = false;
-            this.CancelBtn.Visible = false;
-            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // FormInfomation
             // 

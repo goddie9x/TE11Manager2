@@ -56,6 +56,7 @@ namespace TE11Manager.View
             this.SwicthStoreBtn = new System.Windows.Forms.Button();
             this.RestoreBtn = new System.Windows.Forms.Button();
             this.ManagerPanel = new System.Windows.Forms.Panel();
+            this.ExportBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SchedluleGrid)).BeginInit();
             this.PaginationPanel.SuspendLayout();
             this.PaginationNavPanel.SuspendLayout();
@@ -67,7 +68,7 @@ namespace TE11Manager.View
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(42, 18);
+            this.label1.Location = new System.Drawing.Point(16, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(157, 32);
@@ -108,13 +109,14 @@ namespace TE11Manager.View
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.SchedluleGrid.DefaultCellStyle = dataGridViewCellStyle1;
-            this.SchedluleGrid.Location = new System.Drawing.Point(48, 66);
+            this.SchedluleGrid.Location = new System.Drawing.Point(22, 64);
             this.SchedluleGrid.MaximumSize = new System.Drawing.Size(900, 500);
             this.SchedluleGrid.Name = "SchedluleGrid";
+            this.SchedluleGrid.RowHeadersVisible = false;
             this.SchedluleGrid.RowHeadersWidth = 5;
             this.SchedluleGrid.Size = new System.Drawing.Size(800, 310);
             this.SchedluleGrid.TabIndex = 3;
-            this.SchedluleGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SchedluleGrid_CellContentClick);
+            this.SchedluleGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SchedluleGrid_CellClick);
             // 
             // ColSelect
             // 
@@ -175,7 +177,7 @@ namespace TE11Manager.View
             this.PaginationPanel.Controls.Add(this.PaginationNavPanel);
             this.PaginationPanel.Controls.Add(this.label2);
             this.PaginationPanel.Controls.Add(this.PerPageSelect);
-            this.PaginationPanel.Location = new System.Drawing.Point(48, 392);
+            this.PaginationPanel.Location = new System.Drawing.Point(22, 390);
             this.PaginationPanel.Name = "PaginationPanel";
             this.PaginationPanel.Size = new System.Drawing.Size(503, 46);
             this.PaginationPanel.TabIndex = 4;
@@ -303,20 +305,32 @@ namespace TE11Manager.View
             // 
             // ManagerPanel
             // 
+            this.ManagerPanel.Controls.Add(this.ExportBtn);
             this.ManagerPanel.Controls.Add(this.SwicthStoreBtn);
             this.ManagerPanel.Controls.Add(this.RestoreBtn);
             this.ManagerPanel.Controls.Add(this.DeleteBtn);
-            this.ManagerPanel.Location = new System.Drawing.Point(243, 24);
+            this.ManagerPanel.Location = new System.Drawing.Point(217, 22);
             this.ManagerPanel.Name = "ManagerPanel";
             this.ManagerPanel.Size = new System.Drawing.Size(566, 36);
             this.ManagerPanel.TabIndex = 7;
+            // 
+            // ExportBtn
+            // 
+            this.ExportBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ExportBtn.Location = new System.Drawing.Point(152, 6);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(72, 23);
+            this.ExportBtn.TabIndex = 7;
+            this.ExportBtn.Text = "Export";
+            this.ExportBtn.UseVisualStyleBackColor = false;
+            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
             // 
             // FormSchedules
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1250, 450);
+            this.ClientSize = new System.Drawing.Size(839, 450);
             this.Controls.Add(this.ManagerPanel);
             this.Controls.Add(this.PaginationPanel);
             this.Controls.Add(this.SchedluleGrid);
@@ -365,5 +379,6 @@ namespace TE11Manager.View
         private DataGridViewTextBoxColumn _id;
         private Button RestoreBtn;
         private Panel ManagerPanel;
+        private Button ExportBtn;
     }
 }

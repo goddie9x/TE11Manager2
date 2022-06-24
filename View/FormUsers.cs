@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using TE11Manager.Controller;
 using TE11Manager.DataType;
 
@@ -19,6 +20,7 @@ namespace TE11Manager.View
         private bool isNeedToGetSchedule = true;
         private bool isInStorage = true;
         private int rowSelectedIndex;
+        private readonly string[] Roles = new string[] { "God", "Admin", "Classmate", "Normal" };
         #endregion
         #region Getter Setter
         public bool IsInStorage
@@ -48,8 +50,8 @@ namespace TE11Manager.View
             set
             {
                 isEndPage = value;
-                NextPageBtn.Visible = !isFirstPage;
-                MoveToEndPageBtn.Visible = !isFirstPage;
+                NextPageBtn.Visible = !isEndPage;
+                MoveToEndPageBtn.Visible = !isEndPage;
             }
         }
         public int CurrentPage
@@ -122,6 +124,7 @@ namespace TE11Manager.View
         }
         private void GetUsers()
         {
+            Cursor.Current = Cursors.WaitCursor;
             usersInfo = controller.GetDataWithPostMethod<Users>("user/manager/?page=" + currentPage + "&perPage=" + perPage);
             if (usersInfo != null)
             {
@@ -131,13 +134,14 @@ namespace TE11Manager.View
             {
                 MessageBox.Show("You have no permission");
             }
+            Cursor.Current = Cursors.Default;
         }
         private void RenderUsers()
         {
             UsersGrid.Rows.Clear();
             foreach (User user in usersInfo.users)
             {
-                UsersGrid.Rows.Add(false, user.fullName, user.account, user.role);
+                UsersGrid.Rows.Add(false, user.fullName, user.account, Roles[user.role]);
             }
             TotalRecord = usersInfo.countCurrentStored;
             SwicthStoreBtn.Text = (IsInStorage ? "List baned" : "User") + " (" + usersInfo.countOpositeStored + ")";
@@ -192,7 +196,7 @@ namespace TE11Manager.View
             CurrentPage = 1;
         }
 
-        private void SchedluleGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SchedluleGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowSelectedIndex = e.RowIndex;
         }
@@ -226,6 +230,7 @@ namespace TE11Manager.View
         private void SwicthStoreBtn_Click_1(object sender, System.EventArgs e)
         {
             IsInStorage = !IsInStorage;
+            CurrentPage = 1;
         }
 
         private void UnbanBtn_Click(object sender, System.EventArgs e)
@@ -259,6 +264,36 @@ namespace TE11Manager.View
             else
             {
                 MessageBox.Show("You are not select any row");
+            }
+        }
+        private void UsersGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int columnEditedIndex = e.ColumnIndex;
+            int rowEditedIndex = e.RowIndex;
+            string prevRole = Roles[usersInfo.users[rowEditedIndex].role];
+            if (columnEditedIndex == 3)
+            {
+                string newRole = UsersGrid.Rows[rowSelectedIndex].Cells[columnEditedIndex].Value.ToString();
+                int selectedRole = Array.IndexOf(Roles, newRole);
+                if (selectedRole != -1)
+                {
+                    string _id = usersInfo.users[rowEditedIndex]._id;
+                    string jsonData = "{\"role\":" + selectedRole + "}";
+                    if(controller.PostData("user/edit-role/" + _id, jsonData))
+                    {
+                        MessageBox.Show("Update user role success!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Update user role Failed!");
+                        UsersGrid.Rows[rowSelectedIndex].Cells[columnEditedIndex].Value = prevRole;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid role! our roles are God, Admin, Classmate, Normal");
+                    UsersGrid.Rows[rowSelectedIndex].Cells[columnEditedIndex].Value = prevRole;
+                }
             }
         }
     }

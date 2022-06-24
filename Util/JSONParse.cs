@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Windows.Forms;
 
 namespace TE11Manager.Util
 {
@@ -8,6 +9,7 @@ namespace TE11Manager.Util
     {
         public static string getItemFromJSON(string json, string itemName)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string item = "";
             try
             {
@@ -18,10 +20,12 @@ namespace TE11Manager.Util
             {
                 Console.WriteLine(e.Message);
             }
+            Cursor.Current = Cursors.Default;
             return item;
         }
         public static T getItemFromJSON<T>(string json, string itemName)
         {
+            Cursor.Current = Cursors.WaitCursor;
             T item = default(T);
             try
             {
@@ -32,10 +36,12 @@ namespace TE11Manager.Util
             {
                 Console.WriteLine(e.Message);
             }
+            Cursor.Current = Cursors.Default;
             return item;
         }
         public static string convertStringToJson<T>(T customObject)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string json = "";
             try
             {
@@ -45,6 +51,7 @@ namespace TE11Manager.Util
             {
                 Console.WriteLine(e.Message);
             }
+            Cursor.Current = Cursors.Default;
             return json;
         }
     }

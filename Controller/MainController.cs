@@ -30,6 +30,7 @@ namespace TE11Manager.Controller
                 return default(T);
             }
         }
+
         public T GetData<T>(string datatype)
         {
             string jsonValue = HttpRequestCommon.GetData(datatype);
@@ -42,9 +43,9 @@ namespace TE11Manager.Controller
                 return default(T);
             }
         }
-        public bool DeleteDataForType(string dataType, string _Id)
+        public bool DeleteDataForType(string dataType, string _Id,bool isWithDeleteMethod= false)
         {
-            if (HttpRequestCommon.PostDataJSON(dataType + _Id + "?_method=DELETE", tokenUser)!="")
+            if (HttpRequestCommon.PostDataJSON(dataType + _Id + (isWithDeleteMethod?"?_method=DELETE":""), tokenUser)!="")
                 return true;
             else
             {
@@ -60,16 +61,22 @@ namespace TE11Manager.Controller
                 return false;
             }
         }
-        public void AddDataDataForType(string dataType)
-        {
-           
-        }
-
         public bool PatchDataForType(string dataType, string _Id, string dataPatch)
         {
             //remove the last } and append tokenUser
-            string dataPatchJson = dataPatch.Remove(dataPatch.Length - 1, 1)+ "\"tokenUser\":" + LocalStorage.GetItem("token") + "}";
+            string dataPatchJson = dataPatch.Remove(dataPatch.Length - 1, 1)+ ",\"tokenUser\":" + LocalStorage.GetItem("token") + "}";
             if (HttpRequestCommon.PostDataJSON(dataType + _Id + "?_method=PATCH", dataPatchJson) != "")
+                return true;
+            else
+            {
+                return false;
+            }
+        }
+        public bool PostData(string dataType, string jsonData)
+        {
+            //remove the last } and append tokenUser
+            string dataPostJson = jsonData.Remove(jsonData.Length - 1, 1) + ",\"tokenUser\":" + LocalStorage.GetItem("token") + "}";
+            if (HttpRequestCommon.PostDataJSON(dataType , dataPostJson) != "")
                 return true;
             else
             {
